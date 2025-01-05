@@ -54,10 +54,10 @@ class CameraProcess:
     def connect_to_db(self):
         """Establish a connection to the database."""
         return pymysql.connect(
-            host="serastores.com",
-            database="FlowAnalyticsDB",
-            user="flow_admin",
-            password="D4ta$Flow&2024",
+            host="your_host.com",
+            database="your_DB",
+            user="your_user",
+            password="your_password",
             autocommit=True
         )
 
