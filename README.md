@@ -173,12 +173,17 @@ This project is designed to analyze video streams in real-time, count people, de
   ```
 - The application will display real-time counts and directions on the video feed.
 
-### Example 2: Generate Heatmap from Video
+### Example 2: Generate Heatmap from images
 
-- To process a video file and generate a heatmap:
-  ```bash
-  python main.py --video path_to_video.mp4 --heatmap_output output_path
-  ```
+-The Heatmap code and its dedicated GUI retrieve all the movements that the Direction code has confined to my database by entering the date of the day for which I want to know the heatmap and also retrieving the image that was taken from the readable camera and doing the Heatmap after that... Here is a picture to explain the Heatmap :
+
+- **Before Heatmap**  
+  ![Before Heatmap](captured_images/retrieved_image_2024-12-31_23-59-59.jpg)
+
+
+- **After Heatmap**  
+  ![After Heatmap](HeatmapAI/HeatmapImages/Heatmap_2024-12-31.png)
+
 
 ### Example 3: Database Logging
 
