@@ -17,10 +17,10 @@ class Heatmap:
     def connect_to_db(self):
         try:
             return pymysql.connect(
-                host=os.getenv('DB_HOST', "serastores.com"),
-                database=os.getenv('DB_NAME', "FlowAnalyticsDB"),
-                user=os.getenv('DB_USER', "flow_admin"),
-                password=os.getenv('DB_PASSWORD', "D4ta$Flow&2024")
+                host=os.getenv('DB_HOST', "your_host.com"),
+                database=os.getenv('DB_NAME', "you_DB"),
+                user=os.getenv('DB_USER', "user"),
+                password=os.getenv('DB_PASSWORD', "your_password")
             )
         except pymysql.MySQLError as e:
             print(f"Database connection failed: {e}")
