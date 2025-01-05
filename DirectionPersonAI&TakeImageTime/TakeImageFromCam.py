@@ -20,10 +20,10 @@ class CaptureCam:
     def ConnectDB(self):
         """Establish a connection to the database."""
         return pymysql.connect(
-            host="serastores.com",
-            database="FlowAnalyticsDB",
-            user="flow_admin",
-            password="D4ta$Flow&2024"
+            host="your_host.com",
+            database="your_DB",
+            user="your_user",
+            password="your_password"
         )
 
     def fetch_camera_config(self):
@@ -85,7 +85,6 @@ class CaptureCam:
             )
 
             if response.status_code == 200:
-                # Get the image data directly from the response
                 image_data = response.content
                 return self.insert_image_to_database(image_data, target_datetime)
             else:
@@ -125,7 +124,6 @@ class CaptureCam:
         now = datetime.now()
         target_time = now.replace(hour=hour, minute=minute, second=second, microsecond=0)
 
-        # If the target time has already passed today, set it for tomorrow
         if target_time <= now:
             target_time += timedelta(days=1)
 
@@ -137,14 +135,11 @@ class CaptureCam:
 
         while True:
             try:
-                # Get next target time
                 target_time = self.get_next_target_time(hour, minute, second)
                 print(f"\nNext capture scheduled for: {target_time}")
 
-                # Wait until target time
                 self.wait_until_target_time(target_time)
 
-                # Capture and save image
                 success = self.capture_and_save_image(target_time)
 
                 if success:
@@ -152,7 +147,6 @@ class CaptureCam:
                 else:
                     print("Daily capture failed")
 
-                # Small delay before starting next day's cycle
                 time.sleep(1)
 
             except Exception as e:
