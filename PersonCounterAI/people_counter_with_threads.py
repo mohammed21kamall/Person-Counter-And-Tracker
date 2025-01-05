@@ -1,6 +1,6 @@
 from tracker.centroidtracker import CentroidTracker
 from tracker.trackableobject import TrackableObject
-# from mailer import Mailer
+from mailer import Mailer
 from imutils.video import FPS
 import numpy as np
 import pymysql
@@ -80,17 +80,17 @@ class CameraProcess:
         else:
             return None
 
-    # def send_mail(self):
-    #     """Send alert email"""
-    #     Mailer().send(self.config["Email_Receive"])
+    def send_mail(self):
+        """Send alert email"""
+        Mailer().send(self.config["Email_Receive"])
 
     def connect_to_db(self):
         """Establish a connection to the database."""
         return pymysql.connect(
-            host="serastores.com",
-            database="FlowAnalyticsDB",
-            user="flow_admin",
-            password="D4ta$Flow&2024"
+            host="your_host.com",
+            database="your_DB",
+            user="your_user",
+            password="your_password"
         )
 
     def frame_capture_thread(self, vs):
