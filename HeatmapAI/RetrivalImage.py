@@ -6,10 +6,10 @@ class RetrieveImage:
 
     def ConnectDB(self):
         return pymysql.connect(
-            host='serastores.com',
-            user='flow_admin',
-            password='D4ta$Flow&2024',
-            database='FlowAnalyticsDB'
+            host='your_host.com',
+            user='your_user',
+            password='your_password',
+            database='your_DB'
         )
 
     def sanitize_filename(self, filename: str) -> str:
