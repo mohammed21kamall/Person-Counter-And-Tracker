@@ -172,7 +172,7 @@ This project is designed to analyze video streams in real-time, count people, de
   python main.py --rtsp rtsp://username:password@camera_ip/stream/channel
   ```
 - The application will display real-time counts and directions on the video feed.
-[Watch the demo video](PersonCounterVideo/video.mp4)
+<iframe width="560" height="315" src="PersonCounterVideo/video.mp4" frameborder="0" allowfullscreen></iframe>
 
 ### Example 2: Generate Heatmap from images
 
