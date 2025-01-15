@@ -172,6 +172,7 @@ python main.py --rtsp rtsp://username:password@camera_ip/stream/channel
 ```
 The application will display real-time counts and directions on the video feed.  
 
+[Watch the demo video](PersonCounterVideo/PersonCounter.gif)
 
 
 
