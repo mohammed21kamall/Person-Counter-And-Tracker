@@ -165,14 +165,16 @@ This project is designed to analyze video streams in real-time, count people, de
 
 ## Usage Examples
 
-### Example 1: People Counting and Direction Detection
+### Example 1: People Counting and Direction Detection  
+Use the following command to process a live RTSP stream:  
+`python main.py --rtsp rtsp://username:password@camera_ip/stream/channel`  
+The application will display real-time counts and directions on the video feed.  
 
-- Use the following command to process a live RTSP stream:
-  ```bash
-  python main.py --rtsp rtsp://username:password@camera_ip/stream/channel
-  ```
-- The application will display real-time counts and directions on the video feed.
-<iframe width="560" height="315" src="PersonCounterVideo/video.mp4" frameborder="0" allowfullscreen></iframe>
+<video width="640" height="360" controls>
+  <source src="PersonCounterVideo/video.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 
 ### Example 2: Generate Heatmap from images
 
