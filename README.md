@@ -182,7 +182,7 @@ The application will display real-time counts and directions on the video feed.
 -The Heatmap code and its dedicated GUI retrieve all the movements that the Direction code has confined to my database by entering the date of the day for which I want to know the heatmap and also retrieving the image that was taken from the readable camera and doing the Heatmap after that... Here is a picture to explain the Heatmap :
 
 - **Before Heatmap**  
-  ![Before Heatmap](captured_images/retrieved_image_2024-12-31_23-59-59.jpg)
+  ![Before Heatmap](captured_images/resized_image_2025-03-10_13-47-44.jpg)
 
 
 - **After Heatmap**  
