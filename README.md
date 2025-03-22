@@ -14,6 +14,7 @@ This project is designed to analyze video streams in real-time, count people, de
 - **Database Logging**: Logs people count and timestamps into a MySQL database for historical analysis.
 - **Camera Integration**: Supports RTSP streams and specific integration with Hikvision cameras.
 - **Lightweight Executable**: Converts the code to an executable file for ease of deployment.
+- **Multi-threading**: Utilizes multi-threading to efficiently handle and process data from multiple cameras simultaneously.
 
 ---
 
