@@ -186,7 +186,7 @@ The application will display real-time counts and directions on the video feed.
 
 
 - **After Heatmap**  
-  ![After Heatmap](HeatmapAI/HeatmapImages/Heatmap_2024-12-31.png)
+  ![After Heatmap](HeatmapAI/HeatmapImages/Heatmap_2025-03-10.png)
 
 
 ### Example 3: Database Logging
