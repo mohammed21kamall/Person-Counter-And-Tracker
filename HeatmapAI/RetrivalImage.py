@@ -1,54 +1,75 @@
 import pymysql
+import cv2
+import os
 
 class RetrieveImage:
-    def __init__(self, Date: str):
-        self._Date = Date
+    def __init__(self, branch: int, camera: int):
+        self._branch = branch
+        self._camera = camera
 
     def ConnectDB(self):
         return pymysql.connect(
-            host='your_host.com',
-            user='your_user',
-            password='your_password',
-            database='your_DB'
+            host='serastores.com',
+            user='flow_admin',
+            password='D4ta$Flow&2024',
+            database='FlowAnalyticsDB'
         )
 
-    def sanitize_filename(self, filename: str) -> str:
-        # Replace invalid characters with underscores
-        return filename.replace(":", "-").replace(" ", "_")
+
+    def resize_image(self, image_path: str, scale_factor: int = 500) -> str:
+        # Read the image using OpenCV
+        frame = cv2.imread(image_path)
+
+        if frame is None:
+            print(f"Error: Image at {image_path} could not be read.")
+            return image_path  # Return original path if not readable
+
+        # Resize the image while maintaining aspect ratio
+        new_width = scale_factor
+        new_height = int(frame.shape[0] * (scale_factor / frame.shape[1]))
+        resized_frame = cv2.resize(frame, (new_width, new_height))
+
+        # Save the resized image
+        resized_image_path = image_path.replace("retrieved_image_", "resized_image_")
+        cv2.imwrite(resized_image_path, resized_frame)
+        return resized_image_path
 
     def retrieve_images_from_database(self):
+        connection = None
         try:
             connection = self.ConnectDB()
             cursor = connection.cursor()
 
-            # Extract just the date part (YYYY-MM-DD) from the input date string
-            date_str = self._Date.split(" ")[0]
+            branch = self._branch
+            camera = self._camera
 
-            # Use DATE() to ignore the time component
-            query = "SELECT id, image, capture_time FROM captured_images WHERE DATE(capture_time) = %s"
-            cursor.execute(query, (date_str,))
+            query = "SELECT id, image FROM captured_images WHERE Branch = %s AND Camera = %s"
+            cursor.execute(query, (branch, camera))
             records = cursor.fetchall()
 
             if not records:
-                print("No images found for the specified date.")
+                print("No images found ...")
                 return None
 
-            output_paths = []  # List to store paths of retrieved images
 
             for record in records:
-                image_id, image_data, capture_time = record
+                image_id, image_data = record
 
                 # Sanitize the capture_time for use in the file name
-                sanitized_time = self.sanitize_filename(str(capture_time))
 
-                # Save the image
-                output_path = f"captured_images/retrieved_image_{sanitized_time}.jpg"
+                # Save the original image
+                output_path = f"captured_images/Branch {self._branch}/Camera {self._camera}.jpg"
+
+                # Ensure the directory exists
+                os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
+                # Save the original image
                 with open(output_path, 'wb') as file:
                     file.write(image_data)
-                print(f"Retrieved image ID {image_id} captured at {capture_time}. Saved to {output_path}.")
-                output_paths.append(output_path)
+                # Resize the saved image and get new path
+                resized_image_path = self.resize_image(output_path)
 
-            return output_path  # Return list of output paths
+            return resized_image_path  # Return list of output paths
         except pymysql.Error as e:
             print(f"Error while retrieving images from database: {e}")
         finally:
